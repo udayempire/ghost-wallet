@@ -10,13 +10,13 @@ export default function Home() {
       <div className="">
         <section
           id="hero"
-          className="h-screen flex flex-col gap-14"
+          className="md:h-screen flex flex-col gap-14"
           style={{
             background:
               "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
           }}
         >
-          <div className="grid grid-cols-2 items-center mt-32  place-items-center px-10">
+          <div className="grid md:grid-cols-2  gap-8 items-center mt-14 md:mt-32  place-items-center px-10">
             <div className="">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-zinc-400">
                 <span className="text-yellow-500">Multi-Chain Wallet</span> for

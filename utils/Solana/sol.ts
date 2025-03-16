@@ -8,7 +8,7 @@ interface createSolWalletProps{
     mnemonic:string
 }
 
-export const createSolWallet  = ( {mnemonic}:createSolWalletProps)=>{
+export function createSolWallet  ( {mnemonic}:createSolWalletProps){
     //generate or use exisiting menemonic
     // const usedMnemonic = mnemonic || generateMnemonic();
     const seed =  mnemonicToSeedSync(mnemonic)

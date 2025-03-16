@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { getSeedPhrase } from "@/utils/generateSeedPhrase";
 import { createSolWallet } from "@/utils/Solana/sol";
+import { createEthWallet } from "@/utils/Ethereum/eth";
 
 export default function SeedPage() {
   const router = useRouter();
@@ -44,12 +45,11 @@ export default function SeedPage() {
       createSolWallet({mnemonic:seedPhrase})
     }
     if(network == "ethereum"){
-      alert("Fuck Off")
+      createEthWallet({mnemonic:seedPhrase})
       return
     }
     router.push("/walletDashboard");
   };
-
   return (
     <div
       style={{

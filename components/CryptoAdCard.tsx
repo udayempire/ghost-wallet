@@ -91,7 +91,7 @@ export const CryptoAdCard=({name,usersCount,highlight1,highlight2,highlight3,but
           </div>
         </div>
         <Link
-          href="#seed-phrase?network=ethereum"
+          href={`/seed-phrase?network=${name.toLowerCase()}`}
           className={buttonStyle}
         >
           <span>Create {name} Wallet</span>

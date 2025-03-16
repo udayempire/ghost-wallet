@@ -1,5 +1,6 @@
 import { Appbar } from "@/components/Appbar";
 import { Banner } from "@/components/Banner";
+import { ChooseNetwork } from "@/components/ChooseNetwork";
 import { ExampleSeed } from "@/components/ExampleSeed";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
 
@@ -7,7 +8,13 @@ export default function Home() {
   return (
     <div>
       <Appbar />
-      <div className="">
+      <div
+        className=""
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
+        }}
+      >
         <section
           id="hero"
           className="md:h-screen flex flex-col gap-14"
@@ -39,6 +46,9 @@ export default function Home() {
           <div className="px-8">
             <Banner />
           </div>
+        </section>
+        <section id="selectNetwork">
+          <ChooseNetwork />
         </section>
       </div>
     </div>

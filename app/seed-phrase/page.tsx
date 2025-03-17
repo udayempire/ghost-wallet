@@ -73,7 +73,7 @@ export default function SeedPage() {
     console.log(localStorage.getItem("walletData")
 )
     //Navigate to walletDashboard
-    router.push("/walletDashboard");
+    router.push(`/walletDashboard?network=${network}`);
   };
   return (
     <div

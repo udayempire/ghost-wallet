@@ -5,7 +5,12 @@ import { NetworkTab } from "@/components/NetworkTab";
 import { decryptData } from "@/utils/crypto";
 import { getPasswordCookie } from "@/utils/passwordCookie";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
 export default function WalletDashBoard() {
+  const searchParams = useSearchParams();
+  const network = searchParams.get("network") || ""
+  const formatedNetwork = network.charAt(0).toUpperCase() + network.slice(1);
   const [walletData,setWalletData]=useState<string>("")
   const password = getPasswordCookie() ;
 
@@ -36,7 +41,9 @@ export default function WalletDashBoard() {
     console.error("WalletDetails not found")
     return <div>Wallet Details Not found</div>
   }
-  const decryptedData = decryptData(walletData ,"123456");
+  const decryptedData = decryptData(walletData ,password);
+  console.log(decryptedData)
+  console.log("key",decryptedData.wallets.solWallet.publicKey)
 
   return (
     <div>
@@ -46,15 +53,17 @@ export default function WalletDashBoard() {
           id="walletDashboard"
           className="md:h-screen flex flex-col gap-14"
           style={{
-            background:
-              "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
+            background: "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))"
           }}
         >
           <NetworkTab />
           <div>
             <div>
-              <div className="lg:col-span-2">
-                <KeyPairCard privateKey={decryptedData.wallets.ethWallet.privateKey} publicKey={decryptedData.wallets.ethWallet.address} />
+              <div className=" flex justify-center">
+                <div className="w-full md:max-w-4xl">
+                <KeyPairCard privateKey={decryptedData.wallets.solWallet.privateKey} publicKey={decryptedData.wallets.solWallet.publicKey} walletName={formatedNetwork || "Ethereum"} />
+
+                </div>
                 {/* <!-- Balance and actions -->
                 <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700/30">
                   <h3 className="text-xl font-bold mb-4">

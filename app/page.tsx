@@ -1,14 +1,22 @@
+"use client"
 import { Appbar } from "@/components/Appbar";
 import { Banner } from "@/components/Banner";
 import { ChooseNetwork } from "@/components/ChooseNetwork";
 import { ExampleSeed } from "@/components/ExampleSeed";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
+import { useRouter } from "next/navigation"
 
 export default function Home() {
+  const router =useRouter();
   return (
     <div>
       <Appbar />
-      <div>
+      <div
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
+        }}
+      >
         <section
           id="hero"
           className="md:h-screen flex flex-col gap-14"
@@ -29,7 +37,16 @@ export default function Home() {
                 send transactions effortlessly.
               </p>
               <div className="flex gap-8 mt-10">
-                <PulsatingButton>Create Wallet</PulsatingButton>
+                <PulsatingButton
+                onClick={()=>{
+                  router.push("/#selectNetwork")
+                }}
+                
+                >Create New Wallet</PulsatingButton>
+                {/* TO DO - Create a button component and add href(optional) into it and remove use client in this page */}
+                <PulsatingButton onClick={()=>{
+                  router.push("/walletDashboard")
+                }}>Open Your Wallet</PulsatingButton> 
                 <PulsatingButton>Learn More</PulsatingButton>
               </div>
             </div>

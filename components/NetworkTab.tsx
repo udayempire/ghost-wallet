@@ -1,10 +1,27 @@
+"use client";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 export const NetworkTab = () => {
+  const [selected, setSelected] = useState("ethereum");
+  const router = useRouter();
+
   return (
     <div className="mb-8 border-b border-neutral-700">
       <div className="flex flex-wrap -mb-px">
-        <button className="mr-2 inline-block py-4 px-4 text-sm font-medium text-center border-b-2 border-indigo-500 text-indigo-400 rounded-t-lg">
+        {/* Ethereum Button */}
+        <button
+          onClick={() => {
+            setSelected("ethereum");
+            router.push("/walletDashboard?network=ethereum");
+          }}
+          className={`mr-2 inline-block py-4 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg ${
+            selected === "ethereum"
+              ? "border-indigo-500 text-indigo-400"
+              : "text-neutral-400 border-transparent hover:text-neutral-300 hover:border-neutral-400"
+          }`}
+        >
           <div className="flex items-center">
-          <svg
+            <svg
               className="w-5 h-5 mr-2"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -15,12 +32,21 @@ export const NetworkTab = () => {
             Ethereum
           </div>
         </button>
-        <a
-          href="#ethereumWallet"
-          className="mr-2 inline-block py-4 px-4 text-sm font-medium text-center text-neutral-400 border-b-2 border-transparent hover:text-neutral-300 hover:border-neutral-400 rounded-t-lg"
+
+        {/* Solana Button */}
+        <button
+          onClick={() => {
+            setSelected("solana");
+            router.push("/walletDashboard?network=solana");
+          }}
+          className={`mr-2 inline-block py-4 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg ${
+            selected === "solana"
+              ? "border-indigo-500 text-indigo-400"
+              : "text-neutral-400 border-transparent hover:text-neutral-300 hover:border-neutral-400"
+          }`}
         >
           <div className="flex items-center">
-          <svg
+            <svg
               className="w-5 h-5 mr-2"
               viewBox="0 0 20 20"
               fill="currentColor"
@@ -30,7 +56,9 @@ export const NetworkTab = () => {
             </svg>
             Solana
           </div>
-        </a>
+        </button>
+
+        {/* Add Network (Static) */}
         <button className="inline-block py-4 px-4 text-sm font-medium text-center text-neutral-400 border-b-2 border-transparent hover:text-neutral-300 hover:border-neutral-400 rounded-t-lg">
           <div className="flex items-center">
             <svg

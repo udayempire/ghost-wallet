@@ -11,13 +11,11 @@ export function createEthWallet({ mnemonic }: createSolWalletProps) {
   //deriving eth bip44 path manually
   const derivedNode = rootNode.derivePath(`44'/60'/0'/0/0`); //eth v6+ removed m/ as it is added automatically
   const privateKey = derivedNode.privateKey;
-  const publicKey = derivedNode.publicKey;
 
   //Wallet from private key
   const wallet = new Wallet(privateKey);
   return {
-    address: wallet.address,
-    publicKey,
+    publicKey: wallet.address,
     privateKey
   };
 }

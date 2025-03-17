@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-export const NetworkTab = () => {
-  const [selected, setSelected] = useState("ethereum");
+
+export const NetworkTab = (currentTab:string) => {
+  const [selected, setSelected] = useState(currentTab);
   const router = useRouter();
 
   return (

@@ -55,10 +55,12 @@ export default function SeedPage() {
 
     if(network == "solana"){
       walletData.wallets.solWallet = createSolWallet({mnemonic:seedPhrase})
+      walletData.wallets.ethWallet = createEthWallet({mnemonic:seedPhrase})
       console.log("Generated Solana wallet:", walletData.wallets.solWallet);
     }
     if(network == "ethereum"){
       walletData.wallets.ethWallet = createEthWallet({mnemonic:seedPhrase})
+      walletData.wallets.solWallet = createSolWallet({mnemonic:seedPhrase})
       console.log("Generated Eth wallet:", walletData.wallets.EthWallet);
     }
     //Encrypting the walletData Object using the user's password as the key

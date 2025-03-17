@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { getSeedPhrase } from "@/utils/generateSeedPhrase";
 import { createSolWallet } from "@/utils/Solana/sol";
 import { createEthWallet } from "@/utils/Ethereum/eth";
+import { encryptData } from "@/utils/crypto";
 
 export default function SeedPage() {
   const router = useRouter();
@@ -17,6 +18,12 @@ export default function SeedPage() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isSaved, setIsSaved] = useState(false);
+
+  interface WalletDataProps {
+    mnemonic: string;
+    password: string;
+    wallets: Record<string, unknown>;
+  }
 
   //generating the seedphrase when page mounts
   useEffect(() => {
@@ -38,16 +45,30 @@ export default function SeedPage() {
     if (password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
-    }
-    // Optionally, save the seed and password in a global context or secure storage
-    // Navigate to the wallet dashboard page
+    };
+    const walletData: WalletDataProps= 
+    { mnemonic:seedPhrase,
+      password:password,
+      wallets:{} 
+    };
+
     if(network == "solana"){
-      createSolWallet({mnemonic:seedPhrase})
+      walletData.wallets.solWallet = createSolWallet({mnemonic:seedPhrase})
+      console.log("Generated Solana wallet:", walletData.wallets.solWallet);
     }
     if(network == "ethereum"){
-      createEthWallet({mnemonic:seedPhrase})
-      return
+      walletData.wallets.ethWallet = createEthWallet({mnemonic:seedPhrase})
+      console.log("Generated Eth wallet:", walletData.wallets.EthWallet);
     }
+    //Encrypting the walletData Object using the user's password as the key
+    const encryptedData = encryptData(walletData,password);
+    console.log("EncryptedData:",encryptedData)
+
+    //saving the encrypted data in localStorage
+    localStorage.setItem("walletData:",encryptedData);
+    console.log("Encrypted wallet data saved in localStorage.");
+
+    //Navigate to walletDashboard
     router.push("/walletDashboard");
   };
   return (

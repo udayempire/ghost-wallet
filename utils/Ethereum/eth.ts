@@ -15,14 +15,9 @@ export function createEthWallet({ mnemonic }: createSolWalletProps) {
 
   //Wallet from private key
   const wallet = new Wallet(privateKey);
-  console.log(wallet);
-  console.log("Private Key:", privateKey);
-  console.log("Public Key:", publicKey);
-  console.log("ethAddress:", wallet.address);
-
   return {
-    mnemonic,
     address: wallet.address,
-    wallet,
+    publicKey,
+    privateKey
   };
 }

@@ -35,7 +35,7 @@ export const ChooseNetwork = () => {
             <span>Bitcoin</span>
           </div>
           <div className="bg-neutral-800 px-4 py-2 rounded-lg text-neutral-500 flex items-center cursor-pointer hover:bg-neutral-900 hover:text-neutral-400 transition-all duration-300 transform group-hover:scale-[1.02]">
-            <span>Cardano</span>
+            <span>Polygon</span>
           </div>
           <div className="bg-neutral-800 px-4 py-2 rounded-lg text-neutral-500 flex items-center cursor-pointer hover:bg-neutral-900 hover:text-neutral-400 transition-all duration-300 transform group-hover:scale-[1.02]">
             <span>Avalanche</span>

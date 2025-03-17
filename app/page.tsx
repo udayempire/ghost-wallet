@@ -8,13 +8,7 @@ export default function Home() {
   return (
     <div>
       <Appbar />
-      <div
-        className=""
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
-        }}
-      >
+      <div>
         <section
           id="hero"
           className="md:h-screen flex flex-col gap-14"

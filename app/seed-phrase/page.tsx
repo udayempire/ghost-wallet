@@ -7,8 +7,7 @@ import { getSeedPhrase } from "@/utils/generateSeedPhrase";
 import { createSolWallet } from "@/utils/Solana/sol";
 import { createEthWallet } from "@/utils/Ethereum/eth";
 import { encryptData } from "@/utils/crypto";
-import { passwordAtom } from "@/atom/passwordAtom";
-import {  useAtom } from "jotai"
+import { setPasswordCookie } from "@/utils/passwordCookie";
 
 export default function SeedPage() {
   const router = useRouter();
@@ -19,7 +18,7 @@ export default function SeedPage() {
   const [seedPhrase, setSeedPhrase] = useState("");
   const [isSaved, setIsSaved] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [password, setPassword] = useAtom(passwordAtom);
+  const [password, setPassword] = useState("");
 
   interface WalletDataProps {
     mnemonic: string;
@@ -67,9 +66,12 @@ export default function SeedPage() {
     console.log("EncryptedData:",encryptedData)
 
     //saving the encrypted data in localStorage
-    localStorage.setItem("walletData:",encryptedData);
+    localStorage.setItem("walletData",encryptedData);
+    //saving password
+    setPasswordCookie(password)
     console.log("Encrypted wallet data saved in localStorage.");
-
+    console.log(localStorage.getItem("walletData")
+)
     //Navigate to walletDashboard
     router.push("/walletDashboard");
   };

@@ -7,7 +7,7 @@ const SECRET_KEY = "pass@123";
 //set encrypted Password
 export const setPasswordCookie = (password: string)=>{
     const encrypted = CryptoJS.AES.encrypt(password,SECRET_KEY).toString();
-    Cookies.set(COOKIE_NAME,encrypted,{expiry: 1}) //expires in 1 day
+    Cookies.set(COOKIE_NAME,encrypted,{expires: 1}) //expires in 1 day
 };
 
 // get and decryptPassword from cookie

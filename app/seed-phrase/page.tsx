@@ -7,6 +7,8 @@ import { getSeedPhrase } from "@/utils/generateSeedPhrase";
 import { createSolWallet } from "@/utils/Solana/sol";
 import { createEthWallet } from "@/utils/Ethereum/eth";
 import { encryptData } from "@/utils/crypto";
+import { passwordAtom } from "@/atom/passwordAtom";
+import {  useAtom } from "jotai"
 
 export default function SeedPage() {
   const router = useRouter();
@@ -15,9 +17,9 @@ export default function SeedPage() {
   const formatedNetwork = network.charAt(0).toUpperCase() + network.slice(1);
   //use a function seed phrase based on network here
   const [seedPhrase, setSeedPhrase] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [isSaved, setIsSaved] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [password, setPassword] = useAtom(passwordAtom);
 
   interface WalletDataProps {
     mnemonic: string;

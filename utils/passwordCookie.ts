@@ -5,29 +5,31 @@ const COOKIE_NAME = 'walletPassword';
 const SECRET_KEY = "pass@123";
 
 //set encrypted Password
-export const setPasswordCookie = (password: string)=>{
-    const encrypted = CryptoJS.AES.encrypt(password,SECRET_KEY).toString();
-    Cookies.set(COOKIE_NAME,encrypted,{expires: 1}) //expires in 1 day
+export const setPasswordCookie = (password: string) => {
+    const encrypted = CryptoJS.AES.encrypt(password, SECRET_KEY).toString();
+    Cookies.set(COOKIE_NAME, encrypted, {
+        expires: new Date(Date.now() + 30 * 60 * 1000) // expires in 15 min
+    }) //expires in 1 day
 };
 
 // get and decryptPassword from cookie
-export const getPasswordCookie = ():string | null => {
+export const getPasswordCookie = (): string | null => {
     const encrypted = Cookies.get(COOKIE_NAME);
-    if(!encrypted){
+    if (!encrypted) {
         console.error("No Password Found")
         return null
     }
-    try{
-        const bytes = CryptoJS.AES.decrypt(encrypted,SECRET_KEY)
+    try {
+        const bytes = CryptoJS.AES.decrypt(encrypted, SECRET_KEY)
         return bytes.toString(CryptoJS.enc.Utf8)
-    }catch(error){
-        console.error("Failed to decrypt Password",error)
+    } catch (error) {
+        console.error("Failed to decrypt Password", error)
         return null;
     }
 }
 
 //remove password cookie 
-export const removePasswordCookie =()=>{
+export const removePasswordCookie = () => {
     Cookies.remove(COOKIE_NAME)
 }
 

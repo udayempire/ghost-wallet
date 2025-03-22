@@ -20,9 +20,6 @@ export default function loginWallet() {
                     </div>
                 </section>
             </div>
-
-
-
         </div>
     )
 }

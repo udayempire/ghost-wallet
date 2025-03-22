@@ -5,9 +5,10 @@ import { NetworkTab } from "@/components/NetworkTab";
 import { decryptData } from "@/utils/crypto";
 import { getPasswordCookie } from "@/utils/passwordCookie";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams,useRouter } from "next/navigation";
 
 export default function WalletDashBoard() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const network = searchParams.get("network") || "";
   const formatedNetwork = network.charAt(0).toUpperCase() + network.slice(1);
@@ -35,7 +36,8 @@ export default function WalletDashBoard() {
   // Check if walletData or password are missing
   if (!password) {
     console.error("Password Missing");
-    return <div>Password Missing</div>;
+    router.push("/loginWallet")
+    return <div>Redirecting to login...</div>;
   }
   if (!walletData) {
     console.error("WalletDetails not found");

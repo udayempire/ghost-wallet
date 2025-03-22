@@ -47,7 +47,6 @@ export default function Home() {
                 <PulsatingButton onClick={()=>{
                   router.push("/walletDashboard")
                 }}>Open Your Wallet</PulsatingButton> 
-                <PulsatingButton>Learn More</PulsatingButton>
               </div>
             </div>
             <div>

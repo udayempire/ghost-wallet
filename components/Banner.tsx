@@ -10,7 +10,7 @@ export const Banner = () => {
         <p className="text-gray-300 text-sm">Non-custodial</p>
       </div>
       <div className="text-center">
-        <p className="text-2xl md:text-3xl font-bold text-[#00BFA5]">512-bit</p>
+        <p className="text-2xl md:text-3xl font-bold text-[#00BFA5]">128-bit</p>
         <p className="text-gray-300 text-sm">Encryption</p>
       </div>
       <div className="text-center">

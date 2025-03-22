@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export const NetworkTab = (currentTab:string) => {
-  const [selected, setSelected] = useState(currentTab);
+export const NetworkTab = ({ currentTab }: { currentTab: string }) => {
+  const [selected, setSelected] = useState(currentTab || "ethereum");
   const router = useRouter();
 
   return (

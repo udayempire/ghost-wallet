@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Appbar } from "@/components/Appbar";
 import { KeyPairCard } from "@/components/KeyPairCard";
 import { NetworkTab } from "@/components/NetworkTab";
@@ -9,10 +9,10 @@ import { useSearchParams } from "next/navigation";
 
 export default function WalletDashBoard() {
   const searchParams = useSearchParams();
-  const network = searchParams.get("network") || ""
+  const network = searchParams.get("network") || "";
   const formatedNetwork = network.charAt(0).toUpperCase() + network.slice(1);
-  const [walletData,setWalletData]=useState<string>("")
-  const password = getPasswordCookie() ;
+  const [walletData, setWalletData] = useState<string>("");
+  const password = getPasswordCookie();
 
   // Loading state for walletData
   const [loading, setLoading] = useState(true);
@@ -37,16 +37,16 @@ export default function WalletDashBoard() {
     console.error("Password Missing");
     return <div>Password Missing</div>;
   }
-  if (!walletData){
-    console.error("WalletDetails not found")
-    return <div>Wallet Details Not found</div>
+  if (!walletData) {
+    console.error("WalletDetails not found");
+    return <div>Wallet Details Not found</div>;
   }
-  const decryptedData = decryptData(walletData ,password);
-  console.log(decryptedData)
-  console.log("key",decryptedData.wallets.solWallet.publicKey)
+  const decryptedData = decryptData(walletData, password);
+  console.log(decryptedData);
+  console.log("key", decryptedData.wallets.solWallet.publicKey);
 
   //for solana network
-  if(network=="solana"){
+  if (network == "solana") {
     return (
       <div>
         <Appbar />
@@ -55,15 +55,20 @@ export default function WalletDashBoard() {
             id="walletDashboard"
             className="md:h-screen flex flex-col gap-14"
             style={{
-              background: "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))"
+              background:
+                "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))",
             }}
           >
-            {NetworkTab(network) }
+            <NetworkTab currentTab={network} />
             <div>
               <div>
                 <div className=" flex justify-center">
                   <div className="w-full md:max-w-4xl">
-                  <KeyPairCard privateKey={decryptedData.wallets.solWallet.privateKey} publicKey={decryptedData.wallets.solWallet.publicKey} walletName={formatedNetwork || "Ethereum"} />
+                    <KeyPairCard
+                      privateKey={decryptedData.wallets.solWallet.privateKey}
+                      publicKey={decryptedData.wallets.solWallet.publicKey}
+                      walletName={formatedNetwork || "Ethereum"}
+                    />
                   </div>
                   {/* <!-- Balance and actions -->
                   <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700/30">
@@ -155,9 +160,7 @@ export default function WalletDashBoard() {
         </div>
       </div>
     );
-
-  }
-  else{
+  } else {
     return (
       <div>
         <Appbar />
@@ -166,15 +169,20 @@ export default function WalletDashBoard() {
             id="walletDashboard"
             className="md:h-screen flex flex-col gap-14"
             style={{
-              background: "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))"
+              background:
+                "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))",
             }}
           >
-            {NetworkTab(network) }
+            <NetworkTab currentTab={network} />
             <div>
               <div>
                 <div className=" flex justify-center">
                   <div className="w-full md:max-w-4xl">
-                  <KeyPairCard privateKey={decryptedData.wallets.ethWallet.privateKey} publicKey={decryptedData.wallets.ethWallet.publicKey} walletName={formatedNetwork || "Ethereum"} />
+                    <KeyPairCard
+                      privateKey={decryptedData.wallets.ethWallet.privateKey}
+                      publicKey={decryptedData.wallets.ethWallet.publicKey}
+                      walletName={formatedNetwork || "Ethereum"}
+                    />
                   </div>
                   {/* <!-- Balance and actions -->
                   <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700/30">
@@ -266,7 +274,5 @@ export default function WalletDashBoard() {
         </div>
       </div>
     );
-
   }
-
 }

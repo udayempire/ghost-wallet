@@ -9,20 +9,14 @@ interface createSolWalletProps{
 }
 
 export function createSolWallet  ( {mnemonic}:createSolWalletProps){
-    //generate or use exisiting menemonic
-    // const usedMnemonic = mnemonic || generateMnemonic();
     const seed =  mnemonicToSeedSync(mnemonic)
-
     //Dynamic Derivation Path
     const path = `m/44'/501'/1'/0'/0'` //Derivation Path
     const derivedSeed =  derivePath(path,seed.toString('hex')).key; //32 byte BIP44(as selected in path) derived private key
     const secret = nacl.sign.keyPair.fromSeed(derivedSeed).secretKey; //generating Uint8Array(64) where first 32 bytes are publickey and rest is private key   
-    console.log("secret",secret)
     const privateKeyBytes = secret.slice(0,32);
     const privateKey = bs58.encode(Buffer.from(privateKeyBytes));
-    console.log("privateKey",privateKey)
     const keyPair = Keypair.fromSecretKey(secret);
-    console.log(keyPair)
     return {
         publicKey: keyPair.publicKey.toBase58(),
         privateKey
@@ -42,3 +36,4 @@ export const restoreWallet = (accountIndex:number)=>{
         keypair,
     }
 }
+

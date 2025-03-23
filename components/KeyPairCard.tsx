@@ -1,15 +1,20 @@
+
 import { useState } from "react";
 interface keyPairProps {
   privateKey: string;
   publicKey: string;
   walletName: string;
+  balance: number | null;
 }
+
 export const KeyPairCard = ({
   privateKey,
   publicKey,
   walletName,
+  balance
 }: keyPairProps) => {
   const [IsPrivateKeyVisible, setIsPrivateKeyVisible] = useState(false);
+
   return (
     <div className="bg-zinc-800 rounded-xl p-6 border border-neutral-700/30 mb-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
@@ -25,6 +30,12 @@ export const KeyPairCard = ({
           </div>
         </div>
         <div className="mt-4 sm:mt-0 flex"></div>
+      </div>
+
+      {/* Balance */}
+      <div className="mb-10 text-zinc-200 flex flex-col items-center gap-2">
+        <p className="text-lg text-neutral-400">Current Balance</p>
+        <h1 className="text-5xl text-center text-zinc-200"> {balance} {walletName.slice(0, 3).toUpperCase()} </h1>
       </div>
 
       <div className="bg-neutral-700/30 rounded-lg p-4 mb-6">
@@ -60,7 +71,7 @@ export const KeyPairCard = ({
             <div className="">
               <div className="flex items-center justify-between">
                 {!IsPrivateKeyVisible ? (
-                    <p className="font-mono text-md text-white">••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••</p>
+                  <p className="font-mono text-md text-white">••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••</p>
                 ) : (
                   <p className="font-mono text-md text-white">{privateKey}</p>
                 )}

@@ -56,24 +56,18 @@ export default function SeedPage() {
     if(network == "solana"){
       walletData.wallets.solWallet = createSolWallet({mnemonic:seedPhrase})
       walletData.wallets.ethWallet = createEthWallet({mnemonic:seedPhrase})
-      console.log("Generated Solana wallet:", walletData.wallets.solWallet);
     }
     if(network == "ethereum"){
       walletData.wallets.ethWallet = createEthWallet({mnemonic:seedPhrase})
       walletData.wallets.solWallet = createSolWallet({mnemonic:seedPhrase})
-      console.log("Generated Eth wallet:", walletData.wallets.EthWallet);
     }
     //Encrypting the walletData Object using the user's password as the key
     const encryptedData = encryptData(walletData,password);
-    console.log("EncryptedData:",encryptedData)
-
     //saving the encrypted data in localStorage
     localStorage.setItem("walletData",encryptedData);
     //saving password
     setPasswordCookie(password)
     console.log("Encrypted wallet data saved in localStorage.");
-    console.log(localStorage.getItem("walletData")
-)
     //Navigate to walletDashboard
     router.push(`/walletDashboard?network=${network}`);
   };

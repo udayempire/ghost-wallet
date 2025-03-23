@@ -5,7 +5,7 @@ import { NetworkTab } from "@/components/NetworkTab";
 import { decryptData } from "@/utils/crypto";
 import { getPasswordCookie } from "@/utils/passwordCookie";
 import { useEffect, useState } from "react";
-import { useSearchParams,useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function WalletDashBoard() {
   const router = useRouter();
@@ -17,7 +17,9 @@ export default function WalletDashBoard() {
 
   // Loading state for walletData
   const [loading, setLoading] = useState(true);
+  const [solBalance, setSolBalance] = useState<number | null>(null);
 
+  //walletData
   useEffect(() => {
     const data = localStorage.getItem("walletData");
     if (data) {
@@ -28,6 +30,25 @@ export default function WalletDashBoard() {
     setLoading(false); // Done loading
   }, []);
 
+  //getBalance
+  useEffect(() => {
+    if (!walletData || !password) return; 
+
+    const decryptedData = decryptData(walletData, password);
+    const fetchBalance = async () => {
+      try {
+        const response = await fetch(`/api/get-balance?publicKey=${decryptedData.wallets.solWallet.publicKey}`)
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to fetch balance");
+        }
+        setSolBalance(data.balance);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchBalance()
+  })
   // Show loading until walletData is fetched
   if (loading) {
     return <div>Loading wallet data...</div>;
@@ -44,8 +65,8 @@ export default function WalletDashBoard() {
     return <div>Wallet Details Not found</div>;
   }
   const decryptedData = decryptData(walletData, password);
-  console.log(decryptedData);
-  console.log("key", decryptedData.wallets.solWallet.publicKey);
+
+
 
   //for solana network
   if (network == "solana") {
@@ -70,6 +91,7 @@ export default function WalletDashBoard() {
                       privateKey={decryptedData.wallets.solWallet.privateKey}
                       publicKey={decryptedData.wallets.solWallet.publicKey}
                       walletName={formatedNetwork || "Ethereum"}
+                      balance={solBalance}
                     />
                   </div>
                   {/* <!-- Balance and actions -->
@@ -184,6 +206,7 @@ export default function WalletDashBoard() {
                       privateKey={decryptedData.wallets.ethWallet.privateKey}
                       publicKey={decryptedData.wallets.ethWallet.publicKey}
                       walletName={formatedNetwork || "Ethereum"}
+                      balance={solBalance}
                     />
                   </div>
                   {/* <!-- Balance and actions -->

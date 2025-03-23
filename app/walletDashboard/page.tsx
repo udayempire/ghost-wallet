@@ -6,7 +6,7 @@ import { decryptData } from "@/utils/crypto";
 import { getPasswordCookie } from "@/utils/passwordCookie";
 import { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-
+import axios from "axios"
 export default function WalletDashBoard() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -37,18 +37,16 @@ export default function WalletDashBoard() {
     const decryptedData = decryptData(walletData, password);
     const fetchBalance = async () => {
       try {
-        const response = await fetch(`/api/get-balance?publicKey=${decryptedData.wallets.solWallet.publicKey}`)
-        const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.error || "Failed to fetch balance");
-        }
+        const walletName = `${network.slice(0,3)}Wallet`
+        const response = await axios.get(`/api/get-balance?network=${network}&publicKey=${decryptedData.wallets[walletName].publicKey}`)
+        const data = await response.data;
         setSolBalance(data.balance);
       } catch (error) {
         console.error(error);
       }
     };
     fetchBalance()
-  })
+  },)
   // Show loading until walletData is fetched
   if (loading) {
     return <div>Loading wallet data...</div>;

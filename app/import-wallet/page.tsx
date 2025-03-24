@@ -1,4 +1,5 @@
 "use client";
+import { Suspense } from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -77,88 +78,90 @@ export default function ImportWallet() {
     };
 
     return (
-        <div
-            style={{
-                background:
-                    "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
-            }}
-            className="min-h-screen flex items-center justify-center p-4"
-        >
-            <div className="w-full max-w-2xl mx-auto bg-neutral-800 rounded-xl p-8">
-                <h2 className="text-3xl text-zinc-200 font-bold mb-4 text-center">
-                    Import Your Wallet
-                </h2>
-                <p className="text-neutral-300 mb-6 text-center">
-                    Enter your 12-word seed phrase below.
-                </p>
+        <Suspense fallback={<div>Loading...</div>}>
+            <div
+                style={{
+                    background:
+                        "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
+                }}
+                className="min-h-screen flex items-center justify-center p-4"
+            >
+                <div className="w-full max-w-2xl mx-auto bg-neutral-800 rounded-xl p-8">
+                    <h2 className="text-3xl text-zinc-200 font-bold mb-4 text-center">
+                        Import Your Wallet
+                    </h2>
+                    <p className="text-neutral-300 mb-6 text-center">
+                        Enter your 12-word seed phrase below.
+                    </p>
 
-                {/* Seed Phrase Input Boxes */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                    {seedWords.map((word, index) => (
+                    {/* Seed Phrase Input Boxes */}
+                    <div className="grid grid-cols-3 gap-3 mb-6">
+                        {seedWords.map((word, index) => (
+                            <input
+                                key={index}
+                                type="text"
+                                value={word}
+                                onChange={(e) => handleWordChange(index, e.target.value)}
+                                placeholder={`Word ${index + 1}`}
+                                className="p-2 bg-neutral-700 border border-neutral-600 rounded text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            />
+                        ))}
+                    </div>
+
+                    {/* Password Section */}
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-neutral-300 mb-1">
+                            Password
+                        </label>
                         <input
-                            key={index}
-                            type="text"
-                            value={word}
-                            onChange={(e) => handleWordChange(index, e.target.value)}
-                            placeholder={`Word ${index + 1}`}
-                            className="p-2 bg-neutral-700 border border-neutral-600 rounded text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         />
-                    ))}
-                </div>
+                    </div>
+                    <div className="mb-6">
+                        <label className="block text-sm font-medium text-neutral-300 mb-1">
+                            Confirm Password
+                        </label>
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        />
+                    </div>
 
-                {/* Password Section */}
-                <div className="mb-6">
-                    <label className="block text-sm font-medium text-neutral-300 mb-1">
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block text-sm font-medium text-neutral-300 mb-1">
-                        Confirm Password
-                    </label>
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        className="w-full bg-neutral-700 border border-neutral-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                    />
-                </div>
+                    <div className="flex items-center mb-6">
+                        <input
+                            id="confirm-seed"
+                            type="checkbox"
+                            checked={isImported}
+                            onChange={(e) => setIsImported(e.target.checked)}
+                            className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-neutral-300 rounded"
+                        />
+                        <label htmlFor="confirm-seed" className="ml-2 text-sm text-neutral-300">
+                            I have double-checked my seed phrase.
+                        </label>
+                    </div>
 
-                <div className="flex items-center mb-6">
-                    <input
-                        id="confirm-seed"
-                        type="checkbox"
-                        checked={isImported}
-                        onChange={(e) => setIsImported(e.target.checked)}
-                        className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-neutral-300 rounded"
-                    />
-                    <label htmlFor="confirm-seed" className="ml-2 text-sm text-neutral-300">
-                        I have double-checked my seed phrase.
-                    </label>
-                </div>
-
-                {/* Buttons */}
-                <div className="flex justify-between">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center px-4 py-2 border-2 border-neutral-400 rounded-lg text-neutral-300 hover:border-neutral-500"
-                    >
-                        Back
-                    </Link>
-                    <button
-                        onClick={handleImport}
-                        className="inline-flex items-center px-6 py-2 bg-indigo-600 rounded-lg text-white font-medium hover:bg-indigo-700 transition-colors"
-                    >
-                        Import Wallet
-                    </button>
+                    {/* Buttons */}
+                    <div className="flex justify-between">
+                        <Link
+                            href="/"
+                            className="inline-flex items-center px-4 py-2 border-2 border-neutral-400 rounded-lg text-neutral-300 hover:border-neutral-500"
+                        >
+                            Back
+                        </Link>
+                        <button
+                            onClick={handleImport}
+                            className="inline-flex items-center px-6 py-2 bg-indigo-600 rounded-lg text-white font-medium hover:bg-indigo-700 transition-colors"
+                        >
+                            Import Wallet
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Suspense>
     );
 }

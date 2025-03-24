@@ -47,24 +47,25 @@ export default function SeedPage() {
       alert("Passwords do not match!");
       return;
     };
-    const walletData: WalletDataProps= 
-    { mnemonic:seedPhrase,
-      password:password,
-      wallets:{} 
+    const walletData: WalletDataProps =
+    {
+      mnemonic: seedPhrase,
+      password: password,
+      wallets: {}
     };
 
-    if(network == "solana"){
-      walletData.wallets.solWallet = createSolWallet({mnemonic:seedPhrase})
-      walletData.wallets.ethWallet = createEthWallet({mnemonic:seedPhrase})
+    if (network == "solana") {
+      walletData.wallets.solWallet = createSolWallet({ mnemonic: seedPhrase })
+      walletData.wallets.ethWallet = createEthWallet({ mnemonic: seedPhrase })
     }
-    if(network == "ethereum"){
-      walletData.wallets.ethWallet = createEthWallet({mnemonic:seedPhrase})
-      walletData.wallets.solWallet = createSolWallet({mnemonic:seedPhrase})
+    if (network == "ethereum") {
+      walletData.wallets.ethWallet = createEthWallet({ mnemonic: seedPhrase })
+      walletData.wallets.solWallet = createSolWallet({ mnemonic: seedPhrase })
     }
     //Encrypting the walletData Object using the user's password as the key
-    const encryptedData = encryptData(walletData,password);
+    const encryptedData = encryptData(walletData, password);
     //saving the encrypted data in localStorage
-    localStorage.setItem("walletData",encryptedData);
+    localStorage.setItem("walletData", encryptedData);
     //saving password
     setPasswordCookie(password)
     console.log("Encrypted wallet data saved in localStorage.");

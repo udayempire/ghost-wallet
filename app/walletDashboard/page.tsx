@@ -17,7 +17,7 @@ export default function WalletDashBoard() {
 
   // Loading state for walletData
   const [loading, setLoading] = useState(true);
-  const [solBalance, setSolBalance] = useState<number | null>(null);
+  const [solBalance, setSolBalance] = useState<number | null | string>(null);
 
   //walletData
   useEffect(() => {
@@ -33,7 +33,6 @@ export default function WalletDashBoard() {
   //getBalance
   useEffect(() => {
     if (!walletData || !password) return; 
-
     const decryptedData = decryptData(walletData, password);
     const fetchBalance = async () => {
       try {
@@ -43,6 +42,7 @@ export default function WalletDashBoard() {
         setSolBalance(data.balance);
       } catch (error) {
         console.error(error);
+        setSolBalance("--")
       }
     };
     fetchBalance()

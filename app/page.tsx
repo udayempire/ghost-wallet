@@ -45,7 +45,7 @@ export default function Home() {
                 >Create New Wallet</PulsatingButton>
                 {/* TO DO - Create a button component and add href(optional) into it and remove use client in this page */}
                 <PulsatingButton onClick={()=>{
-                  router.push("/walletDashboard")
+                  router.push("/walletDashboard?network=ethereum")
                 }}>Open Your Wallet</PulsatingButton> 
               </div>
             </div>

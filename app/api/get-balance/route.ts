@@ -17,7 +17,6 @@ export async function GET(request: NextRequest) {
             { status: 400 },
         );
     }
-    
     try {
         let balance;
         if (network.toLowerCase() == "solana") {

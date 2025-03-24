@@ -4,7 +4,7 @@ interface keyPairProps {
   privateKey: string;
   publicKey: string;
   walletName: string;
-  balance: number | null;
+  balance: number | null | string;
 }
 
 export const KeyPairCard = ({

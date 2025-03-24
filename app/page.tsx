@@ -43,6 +43,12 @@ export default function Home() {
                 }}
                 
                 >Create New Wallet</PulsatingButton>
+                <PulsatingButton
+                onClick={()=>{
+                  router.push("/import-wallet")
+                }}
+                
+                >Import Existing Wallet</PulsatingButton>
                 {/* TO DO - Create a button component and add href(optional) into it and remove use client in this page */}
                 <PulsatingButton onClick={()=>{
                   router.push("/walletDashboard?network=ethereum")

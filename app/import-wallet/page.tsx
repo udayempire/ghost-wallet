@@ -63,14 +63,8 @@ export default function ImportWallet() {
             password: password,
             wallets: {}
         };
-        if (network == "solana") {
-            walletData.wallets.solWallet = createSolWallet({ mnemonic: seedPhrase })
-            walletData.wallets.ethWallet = createEthWallet({ mnemonic: seedPhrase })
-        }
-        if (network == "ethereum") {
-            walletData.wallets.ethWallet = createEthWallet({ mnemonic: seedPhrase })
-            walletData.wallets.solWallet = createSolWallet({ mnemonic: seedPhrase })
-        }
+        walletData.wallets.solWallet = createSolWallet({ mnemonic: seedPhrase })
+        walletData.wallets.ethWallet = createEthWallet({ mnemonic: seedPhrase })
         //Encrypting the walletData Object using the user's password as the key
         const encryptedData = encryptData(walletData, password);
         //saving the encrypted data in localStorage

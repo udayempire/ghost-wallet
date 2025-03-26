@@ -7,7 +7,15 @@ import { PulsatingButton } from "@/components/magicui/pulsating-button";
 import { useRouter } from "next/navigation"
 
 export default function Home() {
-  const router =useRouter();
+  const router = useRouter();
+  function handelOpenWallet() {
+    const walletData = localStorage.getItem("walletData");
+    if (!walletData) {
+      alert("First create or import an account you jerk")
+      return
+    }
+    router.push("/walletDashboard?network=solana")
+  }
   return (
     <div>
       <Appbar />
@@ -38,20 +46,18 @@ export default function Home() {
               </p>
               <div className="flex gap-8 mt-10">
                 <PulsatingButton
-                onClick={()=>{
-                  router.push("/#selectNetwork")
-                }}
-                
+                  onClick={() => {
+                    router.push("/#selectNetwork")
+                  }}
+
                 >Create New Wallet</PulsatingButton>
                 <PulsatingButton
-                onClick={()=>{
-                  router.push("/import-wallet")
-                }} 
+                  onClick={() => {
+                    router.push("/import-wallet")
+                  }}
                 >Import Existing Wallet</PulsatingButton>
                 {/* TO DO - Create a button component and add href(optional) into it and remove use client in this page */}
-                <PulsatingButton onClick={()=>{
-                  router.push("/walletDashboard?network=ethereum")
-                }}>Open Your Wallet</PulsatingButton> 
+                <PulsatingButton onClick={handelOpenWallet}>Open Your Wallet</PulsatingButton>
               </div>
             </div>
             <div>

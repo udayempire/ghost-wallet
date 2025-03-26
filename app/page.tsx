@@ -6,7 +6,7 @@ import { ExampleSeed } from "@/components/ExampleSeed";
 import { FAQs } from "@/components/FAQs";
 import { Footer } from "@/components/Footer";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
-import { WalletCreation } from "@/components/walletCreationDetails";
+import { WalletCreationDetails } from "@/components/WalletCreationDetails";
 import { useRouter } from "next/navigation"
 
 export default function Home() {
@@ -76,7 +76,7 @@ export default function Home() {
           id="wallet-creation"
           className="  dark:bg-neutral-900"
         >
-          <WalletCreation/>
+          <WalletCreationDetails/>
         </section>
         <section id="selectNetwork">
           <ChooseNetwork />

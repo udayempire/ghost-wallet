@@ -4,6 +4,7 @@ import { Banner } from "@/components/Banner";
 import { ChooseNetwork } from "@/components/ChooseNetwork";
 import { ExampleSeed } from "@/components/ExampleSeed";
 import { FAQs } from "@/components/FAQs";
+import { Footer } from "@/components/Footer";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
 import { useRouter } from "next/navigation"
 
@@ -83,6 +84,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <Footer/>
       </div>
     </div>
   );

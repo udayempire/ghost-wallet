@@ -3,6 +3,7 @@ import { Appbar } from "@/components/Appbar";
 import { Banner } from "@/components/Banner";
 import { ChooseNetwork } from "@/components/ChooseNetwork";
 import { ExampleSeed } from "@/components/ExampleSeed";
+import { FAQs } from "@/components/FAQs";
 import { PulsatingButton } from "@/components/magicui/pulsating-button";
 import { useRouter } from "next/navigation"
 
@@ -70,6 +71,17 @@ export default function Home() {
         </section>
         <section id="selectNetwork">
           <ChooseNetwork />
+        </section>
+        <section id="FAQs" className="flex flex-col">
+          <div className="flex flex-col text-center gap-2 mt-10">
+            <h1 className="font-bold text-zinc-200 text-4xl">Frequently Asked Questions</h1>
+            <p className="font-semibold text-zinc-300">Get answers to the most common questions about our Ghost Wallet</p>
+          </div>
+          <div className="flex justify-center items-center  mt-8 mb-8 ">
+            <div className="  rounded-lg w-full max-w-3xl ">
+              <FAQs />
+            </div>
+          </div>
         </section>
       </div>
     </div>

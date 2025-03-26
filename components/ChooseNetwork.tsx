@@ -31,13 +31,13 @@ export const ChooseNetwork = () => {
       <div className="mt-8 text-center pb-4">
         <p className="text-neutral-400 mb-4 ">More networks coming soon</p>
         <div className="flex justify-center space-x-4">
-          <div className="bg-neutral-800 px-4 py-2 rounded-lg text-neutral-500 flex items-center cursor-pointer hover:bg-neutral-900 hover:text-neutral-400 transition-all duration-300 transform group-hover:scale-[1.02]">
+          <div className="bg-zinc-300 px-4 py-2 rounded-lg text-black flex items-center cursor-pointer hover:bg-zinc-100 hover:text-black transition-all duration-300 transform group-hover:scale-[1.02]">
             <span>Bitcoin</span>
           </div>
-          <div className="bg-neutral-800 px-4 py-2 rounded-lg text-neutral-500 flex items-center cursor-pointer hover:bg-neutral-900 hover:text-neutral-400 transition-all duration-300 transform group-hover:scale-[1.02]">
+          <div className="bg-zinc-300 px-4 py-2 rounded-lg text-black flex items-center cursor-pointer hover:bg-zinc-100 hover:text-black transition-all duration-300 transform group-hover:scale-[1.02]">
             <span>Polygon</span>
           </div>
-          <div className="bg-neutral-800 px-4 py-2 rounded-lg text-neutral-500 flex items-center cursor-pointer hover:bg-neutral-900 hover:text-neutral-400 transition-all duration-300 transform group-hover:scale-[1.02]">
+          <div className="bg-zinc-300 px-4 py-2 rounded-lg text-black flex items-center cursor-pointer hover:bg-zinc-100 hover:text-black transition-all duration-300 transform group-hover:scale-[1.02]">
             <span>Avalanche</span>
           </div>
         </div>

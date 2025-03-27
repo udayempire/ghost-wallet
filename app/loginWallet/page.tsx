@@ -9,13 +9,13 @@ export default function loginWallet() {
             <div>
                 <section
                     id="password"
-                    className="md:h-screen flex flex-col gap-14"
+                    className="h-screen flex flex-col gap-14"
                     style={{
                         background:
                             "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))",
                     }}
                 >
-                    <div className="flex justify-center items-center h-screen">
+                    <div className="flex justify-center items-center p-4 mt-10">
                         <Password />
                     </div>
                 </section>

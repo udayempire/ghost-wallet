@@ -47,7 +47,7 @@ export const Password = () => {
     }
     return (
         <div className="flex ">
-            <Card className="w-[350px] bg-zinc-800 border-neutral-700/30">
+            <Card className="md:w-sm bg-zinc-800 border-neutral-700/30">
                 <h1 className="text-zinc-200 font-semibold flex justify-center text-xl">Welcome Back</h1>
                 <CardHeader>
                     <CardTitle className="text-zinc-200 flex justify-center text-2xl">Enter The Password</CardTitle>

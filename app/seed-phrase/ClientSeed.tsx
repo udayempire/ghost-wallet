@@ -78,9 +78,10 @@ export default function ClientSeed() {
         background:
           "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 50%, rgba(29,40,42,1) 100%)",
       }}
+      className="px-2"
     >
       <div className=" w-full max-w-2xl mx-auto p-4 py-12">
-        <div className="mb-8 text-center">
+        <div className="mb-4 text-center flex flex-col gap-5 md:gap-2 ">
           <div className="inline-flex items-center justify-center mb-4">
             <div
               id="networkBadge"
@@ -128,10 +129,10 @@ export default function ClientSeed() {
             {seedPhraseArr.map((eachSeedWord, index) => (
               <div
                 key={index}
-                className="flex items-center p-2 bg-neutral-700/30 rounded"
+                className="flex items-center p-2  bg-neutral-700/30 rounded gap-1 font-medium"
               >
-                <span className="text-neutral-500 text-sm mr-2">1.</span>
-                <span className="text-white">{eachSeedWord}</span>
+                <span className="text-neutral-500 text-xs  text-left md:text-lg ">{index+1}.</span>
+                <span className="text-white text-xs md:text-lg ">{eachSeedWord}</span>
               </div>
             ))}
           </div>
@@ -168,10 +169,10 @@ export default function ClientSeed() {
         </div>
 
         <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700/30 mb-8">
-          <h3 className="text-xl text-zinc-200 font-semibold mb-4">
+          <h3 className="text-lg md:text-xl text-zinc-200 font-semibold mb-4">
             Set Your Wallet Password
           </h3>
-          <p className="text-neutral-400 mb-4">
+          <p className="text-neutral-400 mb-4 ">
             This password will be used to unlock your wallet.
           </p>
 
@@ -218,7 +219,7 @@ export default function ClientSeed() {
           </div>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between px-4 md:px-2 text-sm md:text-lg">
           <Link
             href="/"
             className="inline-flex items-center px-4 py-2 border-2 border-neutral-400 rounded-lg text-neutral-300 hover:border-neutral-500 roundedtransition-colors"
@@ -241,7 +242,7 @@ export default function ClientSeed() {
             onClick={() => {
               handleContinue();
             }}
-            className="inline-flex items-center px-6 py-2 bg-indigo-600 rounded-lg text-white font-medium hover:bg-indigo-700 transition-colors"
+            className="inline-flex items-center px-6 py-2 bg-indigo-600 rounded-lg text-white font-medium hover:bg-indigo-700 transition-colors text-sm md:text-lg"
           >
             Continue
             <svg

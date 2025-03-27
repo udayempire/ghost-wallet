@@ -47,7 +47,7 @@ export default function Home() {
                 a secure, intuitive platform. Generate keys, store assets, and
                 send transactions effortlessly.
               </p>
-              <div className="flex gap-8 mt-10">
+              <div className="flex flex-col md:flex-row  gap-8 mt-10">
                 <PulsatingButton
                   onClick={() => {
                     router.push("/#selectNetwork")
@@ -74,17 +74,17 @@ export default function Home() {
         {/* Info About Wallets  */}
         <section
           id="wallet-creation"
-          className="  dark:bg-neutral-900"
+          className="  dark:bg-neutral-900 mt-20 md:mt-0"
         >
           <WalletCreationDetails/>
         </section>
-        <section id="selectNetwork">
+        <section id="selectNetwork" className="p-4 px-6 ">
           <ChooseNetwork />
         </section>
-        <section id="FAQs" className="flex flex-col">
-          <div className="flex flex-col text-center gap-2 mt-10">
-            <h1 className="font-bold text-zinc-200 text-4xl">Frequently Asked Questions</h1>
-            <p className="font-semibold text-zinc-300">Get answers to the most common questions about our Ghost Wallet</p>
+        <section id="FAQs" className="flex flex-col px-8">
+          <div className="flex flex-col text-center gap-6 mt-10">
+            <h1 className="font-bold text-zinc-200 text-3xl md:text-4xl">Frequently Asked Questions</h1>
+            <p className="font-semibold text-zinc-300 text-md md:text-xl">Get answers to the most common questions about our Ghost Wallet</p>
           </div>
           <div className="flex justify-center items-center  mt-8 mb-8 ">
             <div className="  rounded-lg w-full max-w-3xl ">

@@ -9,8 +9,8 @@ export const FAQs = () => {
         <div className=" flex">
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="item-1" className="">
-                    <AccordionTrigger className="text-xl">What is a seed phrase and why is it important?</AccordionTrigger>
-                    <AccordionContent className="text-lg">
+                    <AccordionTrigger>What is a seed phrase and why is it important?</AccordionTrigger>
+                    <AccordionContent>
                         A seed phrase (also called a recovery phrase or mnemonic) is a series of 12 or 24 words that represents your private key in a human-readable format. Its extremely important because its the master key to all accounts derived from it. If you lose your seed phrase and cant access your wallet, you will permanently lose access to your funds. Always keep your seed phrase secure, private, and backed up in multiple safe locations.
                     </AccordionContent>
                 </AccordionItem>

@@ -74,7 +74,7 @@ export default function ClientWallet() {
         <div>
           <section
             id="walletDashboard"
-            className="md:h-screen flex flex-col gap-14"
+            className="h-screen flex flex-col gap-4 "
             style={{
               background:
                 "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))",
@@ -83,8 +83,8 @@ export default function ClientWallet() {
             <NetworkTab currentTab={network} />
             <div>
               <div>
-                <div className=" flex justify-center">
-                  <div className="w-full md:max-w-4xl">
+                <div className=" flex justify-center items-center ">
+                  <div className="w-full md:max-w-4xl px-4">
                     <KeyPairCard
                       privateKey={decryptedData.wallets.solWallet.privateKey}
                       publicKey={decryptedData.wallets.solWallet.publicKey}

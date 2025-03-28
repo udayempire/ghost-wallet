@@ -46,7 +46,8 @@ export default function ClientWallet() {
       }
     };
     fetchBalance()
-  },)
+  },
+)
   // Show loading until walletData is fetched
   if (loading) {
     return <div>Loading wallet data...</div>;

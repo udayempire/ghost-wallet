@@ -64,8 +64,6 @@ export default function ClientWallet() {
   }
   const decryptedData = decryptData(walletData, password);
 
-
-
   //for solana network
   if (network == "solana") {
     return (

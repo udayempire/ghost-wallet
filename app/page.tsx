@@ -11,14 +11,6 @@ import { useRouter } from "next/navigation"
 
 export default function Home() {
   const router = useRouter();
-  function handelOpenWallet() {
-    const walletData = localStorage.getItem("walletData");
-    if (!walletData) {
-      alert("First create or import an account you jerk")
-      return
-    }
-    router.push("/walletDashboard?network=solana")
-  }
   return (
     <div>
       <Appbar />
@@ -60,7 +52,7 @@ export default function Home() {
                   }}
                 >Import Existing Wallet</PulsatingButton>
                 {/* TO DO - Create a button component and add href(optional) into it and remove use client in this page */}
-                <PulsatingButton onClick={handelOpenWallet}>Open Your Wallet</PulsatingButton>
+                <PulsatingButton onClick={()=>{router.push("/check-wallet-balance?network=ethereum")}}>Check Crypto Balances</PulsatingButton>
               </div>
             </div>
             <div>

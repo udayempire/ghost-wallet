@@ -1,4 +1,14 @@
+import { useRouter } from "next/navigation";
 export const ExampleSeed = () => {
+  const router = useRouter();
+    function handelOpenWallet() {
+      const walletData = localStorage.getItem("walletData");
+      if (!walletData) {
+        alert("First create or import an account you jerk")
+        return
+      }
+      router.push("/walletDashboard?network=solana")
+    }
   return (
     <div className=" relative">
       <div className="relative z-10 bg-neutral-800 p-6 rounded-xl shadow-2xl border border-neutral-700 transform hover:-translate-y-2 transition-transform duration-300">
@@ -65,7 +75,7 @@ export const ExampleSeed = () => {
               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
             ></path>
           </svg>
-          <span>Access Your Wallet</span>
+          <button className="cursor-pointer" onClick={()=>{handelOpenWallet()}}>Access Your Wallet</button>
         </button>
       </div>
 

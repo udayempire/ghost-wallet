@@ -39,7 +39,7 @@ export const Password = () => {
         try {
             decryptData(walletData, password);
             setPasswordCookie(password)
-            router.push("/walletDashboard");
+            router.push("/walletDashboard?network=ethereum");
         } catch (e) {
             console.error(e);
             setPasswordFailed(true)

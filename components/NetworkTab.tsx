@@ -60,7 +60,7 @@ export const NetworkTab = ({ currentTab }: { currentTab: string }) => {
           </div>
         </button>
 
-        {/* Add Network (Static) */}
+        {/* Add Network (Static)
         <button className="inline-block py-4 px-4 text-sm font-medium text-center text-neutral-400 border-b-2 border-transparent hover:text-neutral-300 hover:border-neutral-400 rounded-t-lg">
           <div className="flex items-center">
             <svg
@@ -77,7 +77,7 @@ export const NetworkTab = ({ currentTab }: { currentTab: string }) => {
             </svg>
             Add Network
           </div>
-        </button>
+        </button> */}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function ClientCheckAccount() {
             <div>
                 <section
                     id="checkCryptoBalance"
-                    className="md:h-screen flex flex-col gap-14"
+                    className="h-screen flex flex-col gap-14"
                     style={{
                         background:
                             "linear-gradient(166deg, rgba(43, 39, 39, 1), rgba(0, 0, 0, 1))",

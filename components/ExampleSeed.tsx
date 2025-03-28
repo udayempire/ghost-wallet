@@ -61,7 +61,7 @@ export const ExampleSeed = () => {
           </div>
         </div>
 
-        <button className="w-full bg-zinc-200 cursor-pointer hover:bg-zinc-300 text-black py-3 px-6 rounded transition-colors duration-300 flex justify-center items-center space-x-2">
+        <button onClick={()=>{handelOpenWallet()}} className="w-full bg-zinc-200 cursor-pointer hover:bg-zinc-300 text-black py-3 px-6 rounded transition-colors duration-300 flex justify-center items-center space-x-2">
           <svg
             className="w-5 h-5"
             fill="none"
@@ -75,7 +75,7 @@ export const ExampleSeed = () => {
               d="M12 6v6m0 0v6m0-6h6m-6 0H6"
             ></path>
           </svg>
-          <button className="cursor-pointer" onClick={()=>{handelOpenWallet()}}>Access Your Wallet</button>
+          <span>Access Your Wallet</span>
         </button>
       </div>
 

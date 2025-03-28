@@ -1,10 +1,11 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter,usePathname } from "next/navigation";
 
 export const NetworkTab = ({ currentTab }: { currentTab: string }) => {
   const [selected, setSelected] = useState(currentTab || "ethereum");
   const router = useRouter();
+  const pathname = usePathname()
 
   return (
     <div className="mb-8 border-b border-neutral-700">
@@ -13,9 +14,9 @@ export const NetworkTab = ({ currentTab }: { currentTab: string }) => {
         <button
           onClick={() => {
             setSelected("ethereum");
-            router.push("/walletDashboard?network=ethereum");
+            router.push(`${pathname}?network=ethereum`);
           }}
-          className={`mr-2 inline-block py-4 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg ${
+          className={`mr-2 inline-block py-4 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg cursor-pointer ${
             selected === "ethereum"
               ? "border-indigo-500 text-indigo-400"
               : "text-neutral-400 border-transparent hover:text-neutral-300 hover:border-neutral-400"
@@ -35,12 +36,12 @@ export const NetworkTab = ({ currentTab }: { currentTab: string }) => {
         </button>
 
         {/* Solana Button */}
-        <button
+        <button 
           onClick={() => {
             setSelected("solana");
-            router.push("/walletDashboard?network=solana");
+            router.push(`${pathname}?network=solana`);
           }}
-          className={`mr-2 inline-block py-4 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg ${
+          className={`mr-2 inline-block py-4 px-4 text-sm font-medium text-center border-b-2 rounded-t-lg cursor-pointer ${
             selected === "solana"
               ? "border-indigo-500 text-indigo-400"
               : "text-neutral-400 border-transparent hover:text-neutral-300 hover:border-neutral-400"

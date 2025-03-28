@@ -14,6 +14,37 @@ export const KeyPairCard = ({
   balance,
 }: keyPairProps) => {
   const [isPrivateKeyVisible, setIsPrivateKeyVisible] = useState(false);
+  const [copySuccess, setCopySuccess] = useState("");
+
+  const copyToClipboard = async (text: string) => {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopySuccess("Copied!");
+        setTimeout(() => setCopySuccess(""), 3000);
+      } catch (error) {
+        console.error(error);
+        setCopySuccess("Failed to copy")
+        setTimeout(() => setCopySuccess(""), 5000);
+      }
+    } else {
+      try{
+        // Fallback method for unsupported browsers (especially on mobile)
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy"); // Deprecated, but works on older browsers
+        document.body.removeChild(textArea);
+        setCopySuccess("Copied!");
+        setTimeout(() => setCopySuccess(""), 3000);
+      }catch(error){
+        console.error(error);
+        setCopySuccess("Failed to copy")
+        setTimeout(() => setCopySuccess(""), 5000);
+      }
+    }
+  }
 
   return (
     <div className="bg-zinc-800 rounded-xl p-6 border border-neutral-700/30 mb-6 max-w-full md:max-w-3xl mx-auto">
@@ -47,7 +78,9 @@ export const KeyPairCard = ({
             <p className="text-sm text-neutral-400 mb-1">Public Key</p>
             <div className="flex items-center justify-between break-all">
               <p className="font-mono text-md text-white">{publicKey}</p>
-              <button className="ml-2 text-indigo-400 hover:text-indigo-300 cursor-pointer">
+              <button
+                onClick={() => copyToClipboard(publicKey)}
+                className="ml-2 text-indigo-400 hover:text-indigo-300 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -59,6 +92,9 @@ export const KeyPairCard = ({
                 </svg>
               </button>
             </div>
+            {copySuccess && (
+              <p className="text-xs text-green-400 mt-1">{copySuccess}</p>
+            )}
           </div>
         </div>
       </div>
@@ -101,3 +137,5 @@ export const KeyPairCard = ({
     </div>
   );
 };
+
+

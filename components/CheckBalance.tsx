@@ -18,7 +18,7 @@ export const CheckBalance = () => {
         setCurrentPath(network);
         setWalletAddress("")
         setResponse("")
-    }, [network,currentPath])
+    }, [network, currentPath])
 
 
     const fetchBalance = async () => {
@@ -35,7 +35,7 @@ export const CheckBalance = () => {
             setResponse("Incorrect walletAddress")
         }
     }
-    console.log("response:",response)
+    console.log("response:", response)
 
     return (
         <div>
@@ -46,21 +46,22 @@ export const CheckBalance = () => {
                     onChange={(e) => { setWalletAddress(e.target.value) }} value={walletAddress}
                 />
                 <Button onClick={() => { fetchBalance() }} className="bg-green-400 text-neutral-700 hover:bg-green-500  font-semibold cursor-pointer">Show Balance</Button>
-                {response !=="" && (
-                <div className="mt-8 p-4 bg-zinc-200 rounded-sm font-medium text-md">
-                    {/* if no wallet address given by user  */}
-                    {response == "Empty Input" && <p className=" text-red-600">Please Enter the {formatedNetwork} Wallet Address !</p>}
+                {response !== "" && (
+                    <div className="mt-8 p-4 bg-zinc-200 rounded-sm font-medium text-md">
+                        {/* if no wallet address given by user  */}
+                        {response == "Empty Input" && <p className=" text-red-600">Please Enter the {formatedNetwork} Wallet Address !</p>}
 
-                    {/* if incorrect  wallet Address  */}
-                    {response == "Incorrect walletAddress" && <p className=" text-red-600">Invalid wallet address. Doublecheck the {formatedNetwork} address and the selected blockchain, and please try again.</p>}
+                        {/* if incorrect  wallet Address  */}
+                        {response == "Incorrect walletAddress" && <p className=" text-red-600">Invalid wallet address. Doublecheck the {formatedNetwork} address and the selected blockchain, and please try again.</p>}
 
-                    {/* if Everything is correct  */}
-                    {response && response !== "Empty Input" && response !== "Incorrect walletAddress" &&
-                        <div className="flex justify-between items-center">
-                            <span>Current Balance</span>
-                            <span>{response} {network.slice(0, 3).toUpperCase()}</span>
-                        </div>}
-                </div>
+                        {/* if Everything is correct  */}
+                        {response !== "" && response !== "Empty Input" && response !== "Incorrect walletAddress" &&
+                            <div className="flex justify-between items-center">
+                                <span>Current Balance</span>
+                                <span>{response} {network.slice(0, 3).toUpperCase()}</span>
+                            </div>
+                        }
+                    </div>
                 )}
             </div>
 

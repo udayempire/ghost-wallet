@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import { geistVF } from "./fonts";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner"
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,7 +22,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="/favicon_io/favicon.ico" sizes="any" />
+      <head>
+        <link rel="icon" href="/favicon_io/favicon.ico" sizes="any" />
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-ST7N2THFTP"></Script>
+        <Script id="google-analytics">
+          {`window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-ST7N2THFTP');`}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistVF.className} antialiased`}
       >

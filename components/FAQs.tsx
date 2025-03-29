@@ -27,9 +27,9 @@ export const FAQs = () => {
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-4">
-                    <AccordionTrigger>Which of the blockhains do you use?</AccordionTrigger>
+                    <AccordionTrigger>What are public and private keys?</AccordionTrigger>
                     <AccordionContent>
-                        Our wallet currently supports Solana and Ethereum we will add more later.
+                        A public key is a cryptographic key that can be shared openly and is used to encrypt data or verify digital signatures. A private key is kept secret and is used to decrypt data or create digital signatures, ensuring secure communication.
                     </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-5">

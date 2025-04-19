@@ -4,6 +4,7 @@ import { Connection, LAMPORTS_PER_SOL, clusterApiUrl, PublicKey } from "@solana/
 
 const bodySchema = z.object({
     publicKey: z.string().nonempty(),
+    amount: z.number(),
     rpcUrl: z.string().optional()
 })
 export async function POST(request: NextRequest) {
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
             status: 400
         })
     }
-    const { rpcUrl, publicKey } = parsed.data;
+    const { rpcUrl, publicKey, amount } = parsed.data;
     try {
         if (!publicKey) {
             return NextResponse.json(
@@ -31,7 +32,7 @@ export async function POST(request: NextRequest) {
 
         const airdropSignature = await connection.requestAirdrop(
             pubKey,
-            LAMPORTS_PER_SOL
+            amount*LAMPORTS_PER_SOL
         )
         const latestBlockhash = await connection.getLatestBlockhash();
         await connection.confirmTransaction({

@@ -38,7 +38,7 @@ export default function Home() {
                 a secure, intuitive platform. Generate keys, store assets, and
                 send transactions effortlessly.
               </p>
-              <div className="grid grid-cols-3 md:flex-row  gap-8 mt-10">
+              <div className="grid grid-cols-1 md:grid-cols-3  gap-8 mt-10">
                 <Button
                   onClick={() => {
                     router.push("/#selectNetwork")

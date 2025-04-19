@@ -53,6 +53,7 @@ export const Faucet = () => {
     return (
         <div>
             <h1 className=" md:w-4xl text-zinc-300 font-semibold text-3xl md:text-5xl text-center">Airdrop Yourself<span className="text-purple-500"> Solana</span> Tokens</h1>
+            <p className="text-center bg-yellow-600 text-zinc-100 rounded-md py-2 mt-8 ">Note:- This Tokens dont hold any value and are only used for developing version</p>
             <div className="mt-20 flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
                     <h2 className="text-zinc-200 font-semibold text-xl">Enter your Wallet Address</h2>

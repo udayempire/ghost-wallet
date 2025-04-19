@@ -38,7 +38,7 @@ export default function Home() {
                 a secure, intuitive platform. Generate keys, store assets, and
                 send transactions effortlessly.
               </p>
-              <div className="flex flex-col md:flex-row  gap-8 mt-10">
+              <div className="grid grid-cols-3 md:flex-row  gap-8 mt-10">
                 <Button
                   onClick={() => {
                     router.push("/#selectNetwork")
@@ -54,6 +54,7 @@ export default function Home() {
                 >Import Existing Wallet</Button>
                 {/* TO DO - Create a button component and add href(optional) into it and remove use client in this page */}
                 <Button onClick={()=>{router.push("/check-wallet-balance?network=ethereum")}} className="bg-zinc-100 p-6 text-md text-black rounded-sm hover:bg-zinc-300 cursor-pointer">Check Crypto Balances</Button>
+                <Button onClick={()=>{router.push("/sol-faucet")}} className="bg-zinc-100 p-6 text-md text-black rounded-sm hover:bg-zinc-300 cursor-pointer">Airdrop Solana Tokens</Button>
               </div>
             </div>
             <div>

@@ -9,7 +9,7 @@ const bodySchema = z.object({
 })
 export async function POST(request: NextRequest) {
     const json = await request.json();
-    const parsed = bodySchema.safeParse(json);
+    const parsed = bodySchema.safeParse(json); //checking the jsonData
     if (!parsed.success) {
         return NextResponse.json({
             error: "Invalid request  body"
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         )
     } catch (err) {
         return NextResponse.json(
-            { error: 'Airdrop failed', details: err },
+            { error: 'Airdrop failed', details: (err as Error).message },
             { status: 500 }
         );
     }
